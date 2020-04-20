@@ -37,7 +37,7 @@ public class AdicionarComentario extends HttpServlet {
 		String texto = (String) request.getParameter("comentario");
 		
 		if(idNoticia < 1) {
-			response.sendRedirect("listarnoticias.do");
+			response.sendRedirect(request.getContextPath());
 			return;
 		}
 		

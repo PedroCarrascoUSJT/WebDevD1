@@ -6,8 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Service.NoticiaService;
-import Model.Noticia;
+import Service.*;
+import Model.*;
 import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,6 +38,8 @@ public class CarregarNoticia extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Noticia noticia = new NoticiaService().carregaNoticia(id);
 		
+		ArrayList<Comentario> comentarios = new ComentarioService().carregarComentarioDaNoticia(id);
+		
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset = 'UTF-8'>");
@@ -51,15 +53,29 @@ public class CarregarNoticia extends HttpServlet {
 								.append("<img src = 'https://http.cat/404'>");
 		}else {
 			request.getSession().setAttribute("idNoticia", noticia.getId());
-			out.println("<p style='font-size : 64px;font-weight : bold;'>Real News</p>");
-			out.println("<p style='font-size : 64px;font-weight : bold;text-align : center'>"+noticia.getTitulo()+"</p>");
-			out.println("<p style='font-size :32px;text-align : center'>"+noticia.getTexto()+"</p>");
+			out.println("<h1 style='font-size : 42px;font-weight : bold;'>Real News</h1>");
+			out.println("<hr/>");
+			out.println("<p style='font-size : 32px;font-weight : bold;padding-left:20px;'>"+noticia.getTitulo()+"</p>");
+			out.println("<p style='font-size :24px;padding-left:20px;'>"+noticia.getTexto()+"</p>");
 			
-			out.println("<div style='text-align : center'>");
-			out.println("<form action='adicionarcomentario.do' method='POST'>");
-			out.println("<input style='width : 200px;' type='text' name='nome' placeholder = 'seu nome'><br>");
-			out.println("<textarea name='comentario' cols='150' rows='4' placeholder='Comentario'></textarea><br>");
-			out.println("<button type='submit'>Enviar</button>");
+			if(comentarios.size()>0) {
+				out.println("<div>");
+				out.println("<p style='font-size:32px;padding-left:20px;'>Comentários</p>");
+				for(Comentario comentario : comentarios) {
+					out.println("<div>");
+					out.println("<p style='font-size:16px;padding-left:25px;'>"+comentario.getNome()+"</p>");
+					out.println("<p style='font-size:16px;padding-left:30px;'>"+comentario.getTexto()+"</p>");
+					out.println("</div>");
+					out.println("<hr/>");
+				}
+				out.println("<div>");
+			}
+			out.println("<div>");
+			out.println("<p style='font-size:24px;padding-left:25px;'>Adicionar Comentário</p>");
+			out.println("<form style='font-size:24px;padding-left:30px;width : 50%;' action='adicionarcomentario.do' method='POST'>");
+			out.println("Nome: <input style='width : 880px;height:35px;border-radius: 5px;border:1px solid #000' type='text' name='nome'>");
+			out.println("<div style='display: flex;padding-top:20px;'><p style='margin-top: 0px;'>Comentário: </p><textarea style='margin-left:10px;border-radius: 5px;border:1px solid #000' name='comentario' cols='120' rows='6'></textarea> </div>");
+			out.println("<button type='submit' style = 'float:right;height:40px;width:150px;font-size:20px;margin-top:10px;border-radius: 5px;border:1px solid #000'>Enviar</button>");
 			out.println("</form>");
 			out.println("</div>");
 		}

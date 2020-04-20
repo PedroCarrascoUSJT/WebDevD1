@@ -65,7 +65,7 @@ public class CriarNoticia extends HttpServlet {
 								.append("<img src = 'https://http.cat/500'>");
 		}
 		else
-			response.sendRedirect("listarnoticias.do");		
+			response.sendRedirect(request.getContextPath());		
 		
 	}
 

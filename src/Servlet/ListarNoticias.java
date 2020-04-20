@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 /**
  * Servlet implementation class ListarNoticias
  */
-@WebServlet("/listarnoticias.do")
+@WebServlet("/")
 public class ListarNoticias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
