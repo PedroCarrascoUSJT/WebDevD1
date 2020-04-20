@@ -59,10 +59,13 @@ public class CriarNoticia extends HttpServlet {
 		
 		noticia = new NoticiaService().criarNoticia(noticia);
 		
-		if(noticia.getId() < 1)
-			response.sendRedirect("listarnoticias.do");
+		if(noticia.getId() < 1) {
+			response.setStatus(500);
+			response.getWriter().append("<p> Erro ao adicionar noticia </p>")
+								.append("<img src = 'https://http.cat/500'>");
+		}
 		else
-			response.getWriter().append("Nova Noticia adicionada com id "+noticia.getId());
+			response.sendRedirect("listarnoticias.do");		
 		
 	}
 

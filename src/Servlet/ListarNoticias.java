@@ -40,7 +40,7 @@ public class ListarNoticias extends HttpServlet {
 		out.println("</head>");
 		
 		out.println("<body>");
-		if(noticias != null)
+		if(noticias.size() > 0)
 			for(Noticia noticia : noticias) {
 				out.println("<a style = 'text-decoration : none; color : black;' href='noticia.do?id="+noticia.getId()+"'>");
 				out.println("<div>");

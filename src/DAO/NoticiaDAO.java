@@ -32,13 +32,11 @@ public class NoticiaDAO {
 	}
 	
 	public ArrayList<Noticia> listarTodasNoticias(){
-		ArrayList<Noticia> noticias = null;
+		ArrayList<Noticia> noticias = new ArrayList<Noticia>();
 		String sql = "SELECT * FROM noticia";
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()){
-			if(rs.next())
-				noticias = new ArrayList<Noticia>();
 			while(rs.next()) {
 				int id = rs.getInt(1);
 				String descricao = rs.getString(2);
