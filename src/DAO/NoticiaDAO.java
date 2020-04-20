@@ -51,7 +51,7 @@ public class NoticiaDAO {
 	}
 	
 	public Noticia carregaNoticia(int id) {
-		Noticia noticia = null;
+		Noticia noticia = new Noticia();
 		String sql = "SELECT * FROM noticia WHERE id = ?";
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sql);){
