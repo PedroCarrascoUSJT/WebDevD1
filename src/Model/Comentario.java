@@ -6,6 +6,15 @@ public class Comentario {
 	private String texto;
 	private int fk_noticia_id;
 	
+	public Comentario(int id, String nome, String texto, int fk_noticia_id) {
+		setId(id);
+		setNome(nome);
+		setTexto(texto);
+		setFk_noticia_id(fk_noticia_id);
+	}
+
+	public Comentario() {}
+	
 	public int getId() {
 		return id;
 	}
