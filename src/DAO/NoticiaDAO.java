@@ -37,7 +37,8 @@ public class NoticiaDAO {
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()){
-			noticias = new ArrayList<Noticia>();
+			if(rs.next())
+				noticias = new ArrayList<Noticia>();
 			while(rs.next()) {
 				int id = rs.getInt(1);
 				String descricao = rs.getString(2);
@@ -49,6 +50,28 @@ public class NoticiaDAO {
 			e.printStackTrace();
 		}
 		return noticias;
+	}
+	
+	public Noticia carregaNoticia(int id) {
+		Noticia noticia = null;
+		String sql = "SELECT * FROM noticia WHERE id = ?";
+		try(Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement ps = conn.prepareStatement(sql);){
+			ps.setInt(1, id);
+			try(ResultSet rs = ps.executeQuery()){
+				if(rs.next()) {
+					String descricao = rs.getString(2);
+					String titulo = rs.getString(3);
+					String texto = rs.getString(4);
+					noticia = new Noticia(id,descricao,titulo,texto);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return noticia;
 	}
 
 }

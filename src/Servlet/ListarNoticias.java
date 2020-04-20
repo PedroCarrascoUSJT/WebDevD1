@@ -40,14 +40,20 @@ public class ListarNoticias extends HttpServlet {
 		out.println("</head>");
 		
 		out.println("<body>");
-		for(Noticia noticia : noticias) {
-			out.println("<a style = 'text-decoration : none; color : black;' href='noticia.do?id="+noticia.getId()+"'>");
-			out.println("<div>");
-			out.println("<p style='font-size : 32px;font-weight : bold;'>TITULO : "+noticia.getTitulo()+"</p>");
-			out.println("<p style='font-size : 12px'>DESCRIÇÃO : "+noticia.getDescricao()+"</p>");
-			out.println("ID : "+noticia.getId());
-			out.println("</div>");
-			out.println("</a><br>");
+		if(noticias != null)
+			for(Noticia noticia : noticias) {
+				out.println("<a style = 'text-decoration : none; color : black;' href='noticia.do?id="+noticia.getId()+"'>");
+				out.println("<div>");
+				out.println("<p style='font-size : 32px;font-weight : bold;'>TITULO : "+noticia.getTitulo()+"</p>");
+				out.println("<p style='font-size : 12px'>DESCRIÇÃO : "+noticia.getDescricao()+"</p>");
+				out.println("ID : "+noticia.getId());
+				out.println("</div>");
+				out.println("</a><br>");
+			}
+		else {
+			response.setStatus(204);
+			out.println("<p>Nenhuma noticia adicionada </p>");
+			out.println("<img src = 'https://http.cat/204'>");
 		}
 		out.println("</body>");
 		

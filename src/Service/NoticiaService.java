@@ -14,5 +14,9 @@ public class NoticiaService {
 	public ArrayList<Noticia> listarTodasNoticias(){
 		return noticiaDAO.listarTodasNoticias();
 	}
+	
+	public Noticia carregaNoticia(int id) {
+		return noticiaDAO.carregaNoticia(id);
+	}
 
 }
