@@ -60,7 +60,7 @@ public class CriarNoticia extends HttpServlet {
 		noticia = new NoticiaService().criarNoticia(noticia);
 		
 		if(noticia.getId() < 1)
-			response.getWriter().append("Noticia nao adicionada");
+			response.sendRedirect("listarnoticias.do");
 		else
 			response.getWriter().append("Nova Noticia adicionada com id "+noticia.getId());
 		

@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 /**
  * Servlet implementation class ListarNoticias
  */
-@WebServlet("/ListarNoticias")
+@WebServlet("/listarnoticias.do")
 public class ListarNoticias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,7 @@ public class ListarNoticias extends HttpServlet {
 		
 		out.println("<body>");
 		for(Noticia noticia : noticias) {
-			out.println("<a style = 'text-decoration : none; color : black;' href='noticia?id="+noticia.getId()+"'>");
+			out.println("<a style = 'text-decoration : none; color : black;' href='noticia.do?id="+noticia.getId()+"'>");
 			out.println("<div>");
 			out.println("<p style='font-size : 32px;font-weight : bold;'>TITULO : "+noticia.getTitulo()+"</p>");
 			out.println("<p style='font-size : 12px'>DESCRIÇÃO : "+noticia.getDescricao()+"</p>");
