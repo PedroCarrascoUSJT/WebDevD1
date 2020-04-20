@@ -13,6 +13,7 @@ public class Noticia {
 		setTitulo(titulo);
 		setTexto(texto);
 	}
+	public Noticia() {}
 	
 	public int getId() {
 		return id;
