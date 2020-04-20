@@ -62,6 +62,8 @@ public class NoticiaDAO {
 					String titulo = rs.getString(3);
 					String texto = rs.getString(4);
 					noticia = new Noticia(id,descricao,titulo,texto);
+				}else {
+					noticia.setId(-1);
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
