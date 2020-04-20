@@ -30,5 +30,25 @@ public class NoticiaDAO {
 		}
 		return noticia;
 	}
+	
+	public ArrayList<Noticia> listarTodasNoticias(){
+		ArrayList<Noticia> noticias = null;
+		String sql = "SELECT * FROM noticia";
+		try(Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery()){
+			noticias = new ArrayList<Noticia>();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String descricao = rs.getString(2);
+				String titulo = rs.getString(3);
+				String texto = rs.getString(4);
+				noticias.add(new Noticia(id,descricao,titulo,texto));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return noticias;
+	}
 
 }
