@@ -40,6 +40,7 @@ public class ListarNoticias extends HttpServlet {
 		out.println("</head>");
 		
 		out.println("<body>");
+		out.println("<a href='criarnoticia.do'>Clique aqui para criar uma noticia</a>");
 		if(noticias.size() > 0)
 			for(Noticia noticia : noticias) {
 				out.println("<a style = 'text-decoration : none; color : black;' href='noticia.do?id="+noticia.getId()+"'>");
@@ -51,7 +52,6 @@ public class ListarNoticias extends HttpServlet {
 				out.println("</a><br>");
 			}
 		else {
-			response.setStatus(204);
 			out.println("<p>Nenhuma noticia adicionada </p>");
 			out.println("<img src = 'https://http.cat/204'>");
 		}
