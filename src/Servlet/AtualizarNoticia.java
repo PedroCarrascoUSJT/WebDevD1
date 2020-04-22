@@ -32,7 +32,7 @@ public class AtualizarNoticia extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("UTF-8");
-		
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		
 		Noticia noticia = new NoticiaService().carregaNoticia(Integer.parseInt(id));
@@ -46,25 +46,26 @@ public class AtualizarNoticia extends HttpServlet {
 		out.println("<input style='display:none;' type = 'text' name='id' value='"+id+"'><br>");
 		out.println("<input type = 'text' name='descricao' value='"+noticia.getDescricao()+"' placeholder = 'Descrição'><br>");
 		out.println("<input type = 'text' value='"+noticia.getTitulo()+"' name='titulo' placeholder = 'Título'><br>");
-		out.println("<textarea name='texto' rows='5' cols='33'></textarea>"+noticia.getTexto()+"<br>");
+		out.println("<textarea name='texto' rows='5' cols='33'>"+noticia.getTexto()+"</textarea><br>");
 		out.println("<button type='submit'>Adicionar noticia</button>");
 		out.println("</form>");
 		out.println("</body>");
 		out.println("</html>");
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String descricao = request.getParameter("descricao");
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
+		new NoticiaService().atualizarNoticia(new Noticia(id,descricao,titulo,texto));
 		
+		response.sendRedirect(request.getContextPath());
 	}
 
 }

@@ -92,7 +92,7 @@ public class NoticiaDAO {
 	}
 
 	public void atualizarNoticia(Noticia noticia) {
-		String sql = "UPDATE FROM Noticia SET descricao = ?, titulo = ?, texto = ? WHERE id = ?";
+		String sql = "UPDATE Noticia SET descricao = ?, titulo = ?, texto = ? WHERE id = ?";
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 			ps.setString(1, noticia.getDescricao());

@@ -30,7 +30,7 @@ public class ExcluirNoticia extends HttpServlet {
 		int idNoticia = Integer.parseInt(request.getParameter("id"));
 		new NoticiaService().excluirNoticia(idNoticia);
 		
-		response.getWriter().append(request.getContextPath());
+		response.sendRedirect(request.getContextPath());
 	}
 
 }
