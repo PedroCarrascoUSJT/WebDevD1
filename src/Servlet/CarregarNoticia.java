@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import Service.*;
 import Model.*;
 import java.util.*;
-import java.io.IOException;
 import java.io.PrintWriter;
 import Service.NoticiaService;
 

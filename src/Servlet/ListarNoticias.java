@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import Service.NoticiaService;
 import Model.Noticia;
 import java.util.*;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -47,9 +46,12 @@ public class ListarNoticias extends HttpServlet {
 				out.println("<div>");
 				out.println("<p style='font-size : 32px;font-weight : bold;'>TITULO : "+noticia.getTitulo()+"</p>");
 				out.println("<p style='font-size : 12px'>DESCRIÇÃO : "+noticia.getDescricao()+"</p>");
+				out.println("<a href='atualizarnoticia.do?id="+noticia.getId()+"' style='display : flex; float : right; top:30%;padding-left : 20px;padding-right : 20px; border : 1px solid #000'>Editar</a>");
+				out.println("<a href='excluirnoticia.do?id="+noticia.getId()+"' style='display : flex; float : right; top:30%;padding-left : 20px;padding-right : 20px; border : 1px solid #000'>Excluir</a>");
 				out.println("ID : "+noticia.getId());
 				out.println("</div>");
 				out.println("</a><br>");
+				out.println("<hr/>");
 			}
 		else {
 			out.println("<p>Nenhuma noticia adicionada </p>");
