@@ -79,6 +79,7 @@ public class NoticiaDAO {
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 			ps.setInt(1,id);
+			ps.execute();
 			String sqlNoticia = "DELETE FROM Noticia WHERE id = ?";
 			try(PreparedStatement psNoticia = conn.prepareStatement(sqlNoticia)){
 				psNoticia.setInt(1,id);
