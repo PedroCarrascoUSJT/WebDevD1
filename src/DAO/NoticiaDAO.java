@@ -73,5 +73,18 @@ public class NoticiaDAO {
 		}
 		return noticia;
 	}
+	
+	public boolean excluirNoticia(int id) {
+		String sql = "DELETE FROM Noticia WHERE id = ?";
+		try(Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement ps = conn.prepareStatement(sql)){
+			ps.setInt(1,id);
+			 boolean query = ps.execute();
+			 return query;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

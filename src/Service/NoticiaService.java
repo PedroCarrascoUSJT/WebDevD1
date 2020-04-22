@@ -18,5 +18,9 @@ public class NoticiaService {
 	public Noticia carregaNoticia(int id) {
 		return noticiaDAO.carregaNoticia(id);
 	}
+	
+	public boolean excluirNoticia(int id) {
+		return noticiaDAO.excluirNoticia(id);
+	}
 
 }
