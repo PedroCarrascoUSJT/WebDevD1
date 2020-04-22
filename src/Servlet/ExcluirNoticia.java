@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Service.NoticiaService;
 
 /**
  * Servlet implementation class ExcluirNoticia
@@ -27,7 +28,9 @@ public class ExcluirNoticia extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idNoticia = Integer.parseInt(request.getParameter("id"));
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		new NoticiaService().excluirNoticia(idNoticia);
+		
+		response.getWriter().append(request.getContextPath());
 	}
 
 }

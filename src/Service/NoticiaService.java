@@ -19,8 +19,8 @@ public class NoticiaService {
 		return noticiaDAO.carregaNoticia(id);
 	}
 	
-	public boolean excluirNoticia(int id) {
-		return noticiaDAO.excluirNoticia(id);
+	public void excluirNoticia(int id) {
+		noticiaDAO.excluirNoticia(id);
 	}
 
 }
