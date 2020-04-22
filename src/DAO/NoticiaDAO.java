@@ -91,4 +91,17 @@ public class NoticiaDAO {
 		}
 	}
 
+	public void atualizarNoticia(Noticia noticia) {
+		String sql = "UPDATE FROM Noticia SET descricao = ?, titulo = ?, texto = ? WHERE id = ?";
+		try(Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement ps = conn.prepareStatement(sql)){
+			ps.setString(1, noticia.getDescricao());
+			ps.setString(2, noticia.getTitulo());
+			ps.setString(3, noticia.getTexto());
+			ps.setInt(4, noticia.getId());
+			ps.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

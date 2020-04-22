@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Service.NoticiaService;
+import Model.Noticia;
 
 /**
  * Servlet implementation class AtualizarNoticia
@@ -33,6 +35,8 @@ public class AtualizarNoticia extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		
+		Noticia noticia = new NoticiaService().carregaNoticia(Integer.parseInt(id));
+		
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset = 'UTF-8'>");
@@ -40,9 +44,9 @@ public class AtualizarNoticia extends HttpServlet {
 		out.println("<body>");
 		out.println("<form action = 'atualizarnoticia.do' method = 'POST'> ");
 		out.println("<input style='display:none;' type = 'text' name='id' value='"+id+"'><br>");
-		out.println("<input type = 'text' name='descricao' placeholder = 'Descrição'><br>");
-		out.println("<input type = 'text' name='titulo' placeholder = 'Título'><br>");
-		out.println("<textarea name='texto' rows='5' cols='33'></textarea><br>");
+		out.println("<input type = 'text' name='descricao' value='"+noticia.getDescricao()+"' placeholder = 'Descrição'><br>");
+		out.println("<input type = 'text' value='"+noticia.getTitulo()+"' name='titulo' placeholder = 'Título'><br>");
+		out.println("<textarea name='texto' rows='5' cols='33'></textarea>"+noticia.getTexto()+"<br>");
 		out.println("<button type='submit'>Adicionar noticia</button>");
 		out.println("</form>");
 		out.println("</body>");
@@ -58,6 +62,9 @@ public class AtualizarNoticia extends HttpServlet {
 		String descricao = request.getParameter("descricao");
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
+		String id = request.getParameter("id");
+		
+		
 	}
 
 }

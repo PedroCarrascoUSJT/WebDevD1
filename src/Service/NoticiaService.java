@@ -23,4 +23,7 @@ public class NoticiaService {
 		noticiaDAO.excluirNoticia(id);
 	}
 
+	public void atualizarNoticia(Noticia noticia) {
+		noticiaDAO.atualizarNoticia(noticia);
+	}
 }
